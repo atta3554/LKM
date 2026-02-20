@@ -26,3 +26,45 @@ On Debian/Ubuntu:
 ```bash
 sudo apt update
 sudo apt install build-essential linux-headers-$(uname -r)
+```
+
+---
+
+##Build
+```bash
+make
+```
+This should produce a .ko file (e.g., netlink_lkm.ko).
+
+---
+
+##Load / Unload
+###Load
+```bash
+sudo insmod netlink_lkm.ko
+dmesg | tail -n 50
+```
+###Unload
+```bash
+sudo rmmod netlink_lkm
+dmesg | tail -n 50
+```
+
+---
+
+##User-space Client
+A user-space program sends a Netlink message to the module and prints the received reply.
+Example (replace with your actual binary name/path):
+```bash
+make user
+./user_client "command" "param1=value1" "param2=value2"
+```
+
+---
+
+Notes & Safety
+
+Kernel modules run in kernel space. A bug can crash the system.
+Test in a VM first.
+Keep code minimal and validate user input.
+Avoid unsafe memory operations.
