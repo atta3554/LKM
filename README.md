@@ -30,7 +30,7 @@ sudo apt install build-essential linux-headers-$(uname -r)
 
 ---
 
-##Build
+## Build
 ```bash
 make
 ```
@@ -38,13 +38,13 @@ This should produce a .ko file (e.g., netlink_lkm.ko).
 
 ---
 
-##Load / Unload
-###Load
+## Load / Unload
+### Load
 ```bash
 sudo insmod netlink_lkm.ko
 dmesg | tail -n 50
 ```
-###Unload
+### Unload
 ```bash
 sudo rmmod netlink_lkm
 dmesg | tail -n 50
@@ -52,7 +52,7 @@ dmesg | tail -n 50
 
 ---
 
-##User-space Client
+## User-space Client
 A user-space program sends a Netlink message to the module and prints the received reply.
 Example (replace with your actual binary name/path):
 ```bash
